@@ -1,0 +1,35 @@
+---
+- import_role:
+    name: geerlingguy.security
+
+- import_role:
+    name: geerlingguy.postgresql
+
+- import_role:
+    name: geerlingguy.postgresql
+    tasks_from: users
+  vars:
+    postgresql_users:
+      - name: "{{ odoo_user }}"
+        role_attr_flags: CREATEDB
+
+- import_role:
+    name: geerlingguy.postgresql
+    tasks_from: databases
+  vars:
+    postgresql_databases:
+      - name: "{{ database_name }}"
+        owner: "{{ odoo_user }}"
+
+- import_role: coopdevs.certbot_nginx
+  vars:
+    domain_name: "{{ inventory_hostname }}"
+    letsencrypt_email: "{{ certificate_authority_email }}"
+  when: not development_environment
+
+- import_role: jdauphant.nginx
+  when: not development_environment
+
+- import_role: coopdevs.odoo-role
+  vars:
+    odoo_db_admin_password: "{{ odoo_admin_password }}"

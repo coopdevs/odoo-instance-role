@@ -1,0 +1,31 @@
+galaxy_info:
+  author: coopdevs
+  description: Odoo single instance
+  company: coopdevs
+
+  license: GPLv3
+
+  min_ansible_version: 1.2
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+
+  galaxy_tags:
+    - odoo
+    - provisioning
+
+dependencies:
+  - src: coopdevs.sys-admins-role
+    version: v0.0.1
+  - src: geerlingguy.postgresql
+    version: 1.3.1
+  - src: geerlingguy.security
+    version: 1.5.0
+  - src: jdauphant.nginx
+    version: v2.11.1
+  - src: coopdevs.certbot_nginx
+    version: 0.0.1
+  - src: coopdevs.odoo-role
+    version: v0.0.2
