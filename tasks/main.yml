@@ -21,15 +21,18 @@
       - name: "{{ database_name }}"
         owner: "{{ odoo_user }}"
 
-- import_role: coopdevs.certbot_nginx
+- import_role:
+    name: coopdevs.certbot_nginx
   vars:
     domain_name: "{{ inventory_hostname }}"
     letsencrypt_email: "{{ certificate_authority_email }}"
   when: not development_environment
 
-- import_role: jdauphant.nginx
+- import_role:
+    name: jdauphant.nginx
   when: not development_environment
 
-- import_role: coopdevs.odoo-role
+- import_role:
+    name: coopdevs.odoo-role
   vars:
     odoo_db_admin_password: "{{ odoo_admin_password }}"
