@@ -10,7 +10,7 @@
     tasks_from: users
   vars:
     postgresql_users:
-      - name: "{{ odoo_user }}"
+      - name: "{{ odoo_instance_odoo_user }}"
         role_attr_flags: CREATEDB
 
 - import_role:
@@ -18,13 +18,13 @@
     tasks_from: databases
   vars:
     postgresql_databases:
-      - name: "{{ database_name }}"
-        owner: "{{ odoo_user }}"
+      - name: "{{ odoo_instance_database_name }}"
+        owner: "{{ odoo_instance_odoo_user }}"
 
 - import_role: coopdevs.certbot_nginx
   vars:
     domain_name: "{{ inventory_hostname }}"
-    letsencrypt_email: "{{ certificate_authority_email }}"
+    letsencrypt_email: "{{ odoo_instance_certificate_authority_email }}"
   when: not development_environment
 
 - import_role: jdauphant.nginx
@@ -32,4 +32,6 @@
 
 - import_role: coopdevs.odoo-role
   vars:
-    odoo_db_admin_password: "{{ odoo_admin_password }}"
+    odoo_db_admin_password: "{{ odoo_instance_odoo_admin_password }}"
+    odoo_version: "{{ odoo_instance_odoo_version | default(None) }}"
+    odoo_release: "{{ odoo_instance_odoo_release | default(None) }}"
