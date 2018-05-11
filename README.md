@@ -12,11 +12,14 @@ Role Variables
 --------------
 
 ```
-odoo_user: odoo
-database_name: odoo
+odoo_instance_odoo_user: odoo
+odoo_instance_database_name: odoo
 
-certificate_authority_email: # Email address to manage SSL certificate (No default)
-odoo_admin_password: # Odoo master password (No default)
+odoo_instance_certificate_authority_email: # Email address to manage SSL certificate (No default)
+odoo_instance_odoo_admin_password: # Odoo master password (No default)
+
+odoo_instance_odoo_version: # odoo-role has a default version
+odoo_instance_odoo_release: # odoo-role has a default release
 ```
 
 Dependencies
@@ -37,10 +40,10 @@ Example Playbook
   roles:
      - role: coopdevs.odoo-instance-role
        vars:
-         odoo_user: odoo
-         database_name: odoo
-         certificate_authority_email: info@coopdevs.org
-         odoo_admin_password: 1234!?
+         odoo_instance_odoo_user: odoo
+         odoo_instance_database_name: odoo
+         odoo_instance_certificate_authority_email: info@coopdevs.org
+         odoo_instance_odoo_admin_password: 1234!?
 ```
 
 License
