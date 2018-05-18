@@ -25,7 +25,6 @@ odoo_instance_odoo_release: # odoo-role has a default release
 Dependencies
 ------------
 
-- [coopdevs.sys-admins-role](https://galaxy.ansible.com/coopdevs/sys-admins-role/)
 - [geerlingguy.postgresql](https://galaxy.ansible.com/geerlingguy/postgresql/)
 - [geerlingguy.security](https://galaxy.ansible.com/geerlingguy/security/)
 - [jdauphant.nginx](https://galaxy.ansible.com/jdauphant/nginx/)
